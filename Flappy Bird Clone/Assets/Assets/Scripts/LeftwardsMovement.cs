@@ -46,7 +46,7 @@ public class LeftwardsMovement : MonoBehaviour
             moveLeft(lvl4speed);
         }
 
-        if (transform.position.x <= -15) //Destruye el objeto cuando sale de la pantalla para ahorrar recursos
+        if (transform.position.x <= -14) //Destruye el objeto cuando sale de la pantalla para ahorrar recursos
         {            
             GameObject.Destroy(gameObject);
         }

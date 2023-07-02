@@ -10,18 +10,27 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     Rigidbody2D rigidBody;
 
-    // Start is called before the first frame update
+    public gameManager manager;
+
+    bool isDead = false;
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<gameManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && isDead == false)
         {
             Jump();
+        }
+
+        //Destruye el objeto si se sale de la pantalla (para ahorrar recursos en la pantalla de Game Over)
+        if (transform.position.x <= -10)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -35,4 +44,17 @@ public class PlayerMovement : MonoBehaviour
 
         rigidBody.velocity = new Vector2 (0f, jumpForce);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        manager.AddScore(1);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        isDead = true;
+        manager.GameOver();
+    }
+
+
 }
