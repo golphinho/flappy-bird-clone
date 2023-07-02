@@ -6,15 +6,24 @@ public class LeftwardsMovement : MonoBehaviour
 {
     [SerializeField]
     SpriteRenderer spriteRenderer;
-    float lvl1speed = 1;
+    float lvl1speed = 2;
     float lvl2speed = 1;
     float lvl3speed = 1;
     float lvl4speed = 1;
 
     // Start is called before the first frame update
     void Start()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();   
+    {        
+        
+        if (GetComponent<SpriteRenderer>() == null)
+        {
+            GetComponentInChildren<SpriteRenderer>();
+
+        }
+        else {
+
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
     }
 
     // Update is called once per frame
@@ -35,6 +44,11 @@ public class LeftwardsMovement : MonoBehaviour
         else if (spriteRenderer.sortingLayerName == "Lvl.4")
         {
             moveLeft(lvl4speed);
+        }
+
+        if (transform.position.x <= -12) //Destruye el objeto cuando sale de la pantalla para ahorrar recursos
+        {            
+            GameObject.Destroy(gameObject);
         }
     }
 
