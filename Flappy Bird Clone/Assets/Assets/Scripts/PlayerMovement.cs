@@ -32,6 +32,12 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        //Hace que en el menú de inicio el objeto no caiga
+        if (gameManager.juegoEnMarcha == true)
+        {
+            rigidBody.WakeUp();            
+        }
     }
 
     private void Jump() //Cambia la velocidad del cuerpo, añadiéndole una cierta velocidad hacia arriba y haciendo que "salte"
@@ -47,13 +53,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        manager.AddScore(1);
+        if (gameManager.juegoEnMarcha == true)
+        {
+            manager.AddScore(1);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        isDead = true;
-        manager.GameOver();
+        if (gameManager.juegoEnMarcha == true) {
+            isDead = true;
+            manager.GameOver();
+        }
     }
 
 
