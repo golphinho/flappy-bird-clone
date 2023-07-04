@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 
 public class gameManager : MonoBehaviour
 {
@@ -18,6 +17,8 @@ public class gameManager : MonoBehaviour
     [SerializeField]
     GameObject startMenu;
 
+    [SerializeField] Animator wingsAnimator;
+
     [SerializeField]
     public Spawner spawnerNotToWorkAtStart; //este spawner empezará desactivado y se activará una vez el usuario empiece a jugar
 
@@ -29,8 +30,10 @@ public class gameManager : MonoBehaviour
 
     private void Start()
     {
-        scoreText.text = " ";
-        bestScoreText.text = " ";
+        wingsAnimator.SetBool("isDead", false);
+
+        scoreText.text = string.Empty;
+        bestScoreText.text = string.Empty;
 
         scoreText.text = "<sprite name=\"Num0\">"; //establece el número mostrado con la puntuación del jugador en 0 siempre que se inicie el juego
         
@@ -42,6 +45,8 @@ public class gameManager : MonoBehaviour
 
             bestScoreText.text = "<sprite name=\"Num" + tmp.ToString()[0] + "\">" + bestScoreText.text;
         }
+
+        FindObjectOfType<AudioManager>().Play("Music");
     }
 
     private void Update()
@@ -71,8 +76,8 @@ public class gameManager : MonoBehaviour
             startMenu.SetActive(true);
         }
 
-        //Hace que el menú de pausa se quite si se pulsa el espacio
-        if (Input.GetButtonDown("Jump") && juegoEnMarcha == false)
+        //Hace que el menú de pausa se quite si se pulsa el espacio o pulsa en la pantalla
+        if (Input.GetButtonDown("Jump") && juegoEnMarcha == false || Input.GetMouseButtonDown(0) && juegoEnMarcha == false)
         {
             EmpezarAJugar();
         }
@@ -131,6 +136,7 @@ public class gameManager : MonoBehaviour
     public void GameOver()
     {
         gameOver.SetActive(true);
+        wingsAnimator.SetBool("isDead", true);
     }
 
     public void Reiniciar()

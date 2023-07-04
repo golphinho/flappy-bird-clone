@@ -35,7 +35,7 @@ public class Spawner : MonoBehaviour
     {
         if (ultimoInstanciado.transform.position.x <= spawner.transform.position.x - distanciaInstancias && randomY == true) //comprueba la posición del último objeto instanciado y si randomY es true
         {
-            UnityEngine.Random.InitState(System.DateTime.Now.Second);
+            UnityEngine.Random.InitState(System.DateTime.Now.Millisecond);
             ultimoInstanciado = Instantiate(prefab, new Vector3(spawner.transform.position.x, spawner.transform.position.y + UnityEngine.Random.Range(randomYmin, randomYmax), 0), Quaternion.Euler(0, 0, 0)); //genera un nuevo objeto en la posición x del spawner y con una posición y aleatoria (entre randomYmin y randomYmax)
             Debug.Log(ultimoInstanciado.name + " Generado");
         }

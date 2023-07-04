@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Jump") && isDead == false)
+        if (Input.GetButtonDown("Jump") && isDead == false || Input.GetMouseButtonDown(0) && isDead == false)
         {
             Jump();
         }
