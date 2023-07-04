@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-            ultimoInstanciado = Instantiate(prefab, spawner.transform); //Genera una instancia del prefab en la posición del spawner, y la guarda en ultimoInstanciado
+        ultimoInstanciado = Instantiate(prefab, spawner.transform); //Genera una instancia del prefab en la posición del spawner, y la guarda en ultimoInstanciado
     }
 
     // Update is called once per frame
