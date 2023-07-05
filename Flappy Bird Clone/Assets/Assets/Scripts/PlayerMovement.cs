@@ -14,6 +14,10 @@ public class PlayerMovement : MonoBehaviour
 
     bool isDead = false;
 
+    //Para el port a Android
+    bool previousWasTouching = false;
+    bool isTouching = false;
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -25,6 +29,14 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isDead == false && gameManager.gameIsPaused == false || Input.GetMouseButtonDown(0) && isDead == false && gameManager.gameIsPaused == false && gameManager.juegoEnMarcha == true)
         {
             Jump();
+        }
+
+        //Para el port a Android
+        isTouching = Input.touchCount > 0; //comprueba si se está pulsando la pantalla
+        if (isTouching && !previousWasTouching && isDead == false && gameManager.gameIsPaused == false && gameManager.juegoEnMarcha == true) //comprueba si se está pulsando la pantalla en este frame y no se pulsó en el anterior (entre otras cosas))
+        {
+            Jump();
+            previousWasTouching = isTouching;
         }
 
         //Destruye el objeto si se sale de la pantalla (para ahorrar recursos en la pantalla de Game Over)

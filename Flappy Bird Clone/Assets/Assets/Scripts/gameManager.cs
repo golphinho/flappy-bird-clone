@@ -64,22 +64,10 @@ public class gameManager : MonoBehaviour
             }
         }
 
-        //
-        if (Input.GetButtonDown("Jump") && gameOver.activeSelf == true)
-        {
-            Reiniciar();
-        }
-
         //activa el menú de pausa si juegoEnMarcha == false
         if (juegoEnMarcha == false)
         {
             startMenu.SetActive(true);
-        }
-
-        //Hace que el menú de pausa se quite si se pulsa el espacio o pulsa en la pantalla
-        if (Input.GetButtonDown("Jump") && juegoEnMarcha == false)
-        {
-            EmpezarAJugar();
         }
 
         //activa los spawners que se hayan de activar cuando el juego esté en marcha
