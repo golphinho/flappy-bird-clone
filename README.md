@@ -8,22 +8,23 @@ Its mechanics are identical to the ones seen in *"Flappy Bird"*.
 
 ### Screenshots
 
-<img src="https://github.com/golphinho/flappy-bird-clone/assets/138117292/964d7fd9-d967-4946-8c01-85861a476c95" alt="StartScreen" width="800"/>
+<img src="https://github.com/golphinho/flappy-bird-clone/assets/138117292/1f94d207-0afa-46b6-ab5f-3a221e1b780f" alt="StartScreen" width="800"/>
 
 *Start Menu*
 <br/><br/>
 
-<img src="https://github.com/golphinho/flappy-bird-clone/assets/138117292/27a306e7-68d2-4e36-ba53-0cee4a1a47ce" alt="Gameplay" width="800"/>
+
+<img src="https://github.com/golphinho/flappy-bird-clone/assets/138117292/b80ff709-7c2d-4a9b-a88a-927bbf7cf43c" alt="Gameplay" width="800"/>
 
 *In-Game Screenchot*
 <br/><br/>
 
-<img src="https://github.com/golphinho/flappy-bird-clone/assets/138117292/964e7a1a-0ade-4284-ba1d-c4e6795871e9" alt="PauseScreen" width="800"/>
+<img src="https://github.com/golphinho/flappy-bird-clone/assets/138117292/ffdaa0a9-81e1-4c23-9eaa-5124bd09cb83" alt="PauseScreen" width="800"/>
 
 *Pause Screen*
 <br/><br/>
 
-<img src="https://github.com/golphinho/flappy-bird-clone/assets/138117292/791dda18-f5f0-4341-b8ae-e1adf62bdb81" alt="GameOver" width="800"/>
+<img src="https://github.com/golphinho/flappy-bird-clone/assets/138117292/cb18f3c3-bdc5-44a3-ab5f-7b3f4cb1bd5a" alt="GameOver" width="800"/>
 
 *Game Over Screen*
 <br/><br/>
