@@ -22,7 +22,7 @@ public class gameManager : MonoBehaviour
     [SerializeField]
     public Spawner spawnerNotToWorkAtStart; //este spawner empezará desactivado y se activará una vez el usuario empiece a jugar
 
-    bool gameIsPaused = false;
+    public static bool gameIsPaused = false;
     public static bool juegoEnMarcha = false;
 
     //usadas en el bucle que devuelve gameScore como unidades, decenas...
@@ -77,7 +77,7 @@ public class gameManager : MonoBehaviour
         }
 
         //Hace que el menú de pausa se quite si se pulsa el espacio o pulsa en la pantalla
-        if (Input.GetButtonDown("Jump") && juegoEnMarcha == false || Input.GetMouseButtonDown(0) && juegoEnMarcha == false)
+        if (Input.GetButtonDown("Jump") && juegoEnMarcha == false)
         {
             EmpezarAJugar();
         }
@@ -86,7 +86,7 @@ public class gameManager : MonoBehaviour
         if (juegoEnMarcha == true)
         {
             spawnerNotToWorkAtStart.enabled = true;
-        }
+        }        
 
     }
 
@@ -137,6 +137,7 @@ public class gameManager : MonoBehaviour
     {
         gameOver.SetActive(true);
         wingsAnimator.SetBool("isDead", true);
+
     }
 
     public void Reiniciar()
@@ -147,12 +148,15 @@ public class gameManager : MonoBehaviour
     public void Reanudar()
     {
         pauseMenu.SetActive(false);
+        FindObjectOfType<AudioManager>().UnPause("Music");
         Time.timeScale = 1f;
         gameIsPaused = false;
     }
 
     public void Pausar()
     {
+        FindObjectOfType<AudioManager>().Play("Pause");
+        FindObjectOfType<AudioManager>().Pause("Music");
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
@@ -160,13 +164,31 @@ public class gameManager : MonoBehaviour
 
     public void Cerrar()
     {
-        Debug.Log("APLICACIÓN CERRADA");
-        Application.Quit();
+        StartCoroutine(CerrarCorrutina());
     }
 
     public void EmpezarAJugar()
     {
         juegoEnMarcha = true;
         startMenu.SetActive(false);
+    }
+
+    public void PlayHoverButtonSound()
+    {
+        FindObjectOfType<AudioManager>().Play("HoverButton");
+    }
+
+    public void PlayPressButtonSound()
+    {
+        FindObjectOfType<AudioManager>().Play("PressButton");
+    }
+
+    //corrutina usada para cerrar el juego (ya que se necesita esperar unos segundos desde que suena el audio hasta que el juego se cierra realmente)
+    IEnumerator CerrarCorrutina()
+    {
+        FindObjectOfType<AudioManager>().Play("Exit");
+        yield return new WaitForSecondsRealtime(1.5f);
+        Debug.Log("APLICACIÓN CERRADA");
+        Application.Quit();
     }
 }

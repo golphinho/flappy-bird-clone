@@ -11,7 +11,6 @@ public class LeftwardsMovement : MonoBehaviour
     float lvl3speed = 0.75f;
     float lvl4speed = 0.5f;
 
-    // Start is called before the first frame update
     void Start()
     {        
         
@@ -26,9 +25,9 @@ public class LeftwardsMovement : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {        
+        //Logra el parallax effect distribuyendo los diferentes objetos en distintas capas, y dándoles distintas velocidades a cada una
         if(spriteRenderer.sortingLayerName == "Lvl.1")
         {
             moveLeft(lvl1speed);
@@ -46,7 +45,8 @@ public class LeftwardsMovement : MonoBehaviour
             moveLeft(lvl4speed);
         }
 
-        if (transform.position.x <= -14) //Destruye el objeto cuando sale de la pantalla para ahorrar recursos
+        //Destruye el objeto cuando sale de la pantalla para ahorrar recursos
+        if (transform.position.x <= -14)
         {            
             GameObject.Destroy(gameObject);
         }

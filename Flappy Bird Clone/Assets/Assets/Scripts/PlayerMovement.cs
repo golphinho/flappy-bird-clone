@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Jump") && isDead == false || Input.GetMouseButtonDown(0) && isDead == false)
+        if (Input.GetButtonDown("Jump") && isDead == false && gameManager.gameIsPaused == false || Input.GetMouseButtonDown(0) && isDead == false && gameManager.gameIsPaused == false && gameManager.juegoEnMarcha == true)
         {
             Jump();
         }
@@ -49,21 +49,28 @@ public class PlayerMovement : MonoBehaviour
         //rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse)
 
         rigidBody.velocity = new Vector2 (0f, jumpForce);
+
+        FindObjectOfType<AudioManager>().Play("Jump");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (gameManager.juegoEnMarcha == true)
+        if (gameManager.juegoEnMarcha == true && isDead == false)
         {
             manager.AddScore(1);
+            FindObjectOfType<AudioManager>().Play("Score");
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (gameManager.juegoEnMarcha == true) {
+        if (gameManager.juegoEnMarcha == true && isDead == false) {
             isDead = true;
             manager.GameOver();
+
+            //reproduce los sonidos correspondientes si el jugador acaba de morir
+            FindObjectOfType<AudioManager>().Play("Death");
+            FindObjectOfType<AudioManager>().Play("Oof");
         }
     }
 
