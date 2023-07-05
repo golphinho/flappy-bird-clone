@@ -6,7 +6,7 @@ public class LeftwardsMovement : MonoBehaviour
 {
     [SerializeField]
     SpriteRenderer spriteRenderer;
-    float lvl1speed = 2.5f;
+    float lvl1speed = 2.6f;
     float lvl2speed = 1.3f;
     float lvl3speed = 0.75f;
     float lvl4speed = 0.5f;

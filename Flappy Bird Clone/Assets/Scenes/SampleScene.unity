@@ -3379,7 +3379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 834a0fefba0a7a047b5a6bb58a9bf1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanciaInstancias: 3.7
+  distanciaInstancias: 3.65
   prefab: {fileID: 4117180350563138159, guid: a2ba7ba5db86bb946a7cff0058aef2eb, type: 3}
   spawner: {fileID: 1747076456}
   randomY: 1
