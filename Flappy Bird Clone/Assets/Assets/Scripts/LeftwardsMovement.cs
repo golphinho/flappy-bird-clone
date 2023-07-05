@@ -6,10 +6,12 @@ public class LeftwardsMovement : MonoBehaviour
 {
     [SerializeField]
     SpriteRenderer spriteRenderer;
-    float lvl1speed = 2.6f;
-    float lvl2speed = 1.3f;
+    float lvl1speed = 2.7f;
+    float lvl2speed = 1.4f;
+    float lvl25speed = 1f;
     float lvl3speed = 0.75f;
     float lvl4speed = 0.5f;
+    float skyspeed = 0.25f;
 
     void Start()
     {        
@@ -36,6 +38,10 @@ public class LeftwardsMovement : MonoBehaviour
         {
             moveLeft(lvl2speed);
         }
+        else if (spriteRenderer.sortingLayerName == "Lvl.2.5")
+        {
+            moveLeft(lvl25speed);
+        }
         else if (spriteRenderer.sortingLayerName == "Lvl.3")
         {
             moveLeft(lvl3speed);
@@ -43,6 +49,10 @@ public class LeftwardsMovement : MonoBehaviour
         else if (spriteRenderer.sortingLayerName == "Lvl.4")
         {
             moveLeft(lvl4speed);
+        }
+        else if (spriteRenderer.sortingLayerName == "Sky")
+        {
+            moveLeft(skyspeed);
         }
 
         //Destruye el objeto cuando sale de la pantalla para ahorrar recursos
